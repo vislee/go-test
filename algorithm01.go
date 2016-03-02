@@ -23,8 +23,14 @@ func binary_search(array []int, l, value int) int {
 
 // 快速排序
 func quick_sort(array []int, left, right int) {
+	if left >= right {
+		return
+	}
+
+	m := left + (right-left)>>1
+	array[left], array[m] = array[m], array[left]
 	i, j, x := left, right, array[left]
-	if i < j {
+	for i < j {
 		for i < j && array[j] > x {
 			j--
 		}
@@ -47,8 +53,8 @@ func quick_sort(array []int, left, right int) {
 }
 
 func main() {
-	test := []int{5, 3, 2, 4, 1, 6, 7}
-	quick_sort(test, 0, 6)
+	test := []int{5, 3, 2, 4, 1, 6, 7, 15, 8, 10, 30, 9, 18, 23, 32, 21, 24, 27, 29}
+	quick_sort(test, 0, 18)
 	fmt.Println(test)
 
 	idx := binary_search(test, len(test), 3)
